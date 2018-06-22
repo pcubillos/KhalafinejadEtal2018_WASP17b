@@ -6,6 +6,13 @@ git clone --recursive https://github.com/pcubillos/pyratbay
 cd $topdir/pyratbay
 git checkout fb03915
 
+# Patch pyratbay code for high-res data:
+cp $topdir/code/patch/driver.py   $topdir/pyratbay/pyratbay/pbay/driver.py
+cp $topdir/code/patch/pyratfit.py $topdir/pyratbay/pyratbay/pbay/pyratfit.py
+cp $topdir/code/patch/argum.py    $topdir/pyratbay/pyratbay/pyrat/argum.py
+cp $topdir/code/patch/objects.py  $topdir/pyratbay/pyratbay/pyrat/objects.py
+#cp $topdir/code/patch/wine.py     $topdir/pyratbay/pyratbay/wine/wine.py
+
 # Compile the PB code:
 cd $topdir/pyratbay
 make
@@ -16,13 +23,13 @@ python $topdir/pyratbay/pbay.py -c upper_atm_solar.cfg
 
 # Retrieval:
 cd $topdir/run/
-python $topdir/pyratbay/pbay.py -c WASP17b_retrieval.cfg
+python $topdir/pyratbay/pbay.py -c mcmcm_WASP17b.cfg
 
-# Forward model plot:
+# Best-fit spectrum plot:
 cd $topdir/run/
-python $topdir/fig_hires.py
+python $topdir/code/fig_hires.py
 
 # Retrieval plots:
 cd $topdir/run/
-python $topdir/fig_post.py
+python $topdir/code/fig_post.py
 
