@@ -1,3 +1,11 @@
+pyratbay/
+*.atm
+*.tea
+run/*.png
+run/*.dat
+run/*.npz
+
+*.swp
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
