@@ -24,13 +24,13 @@ nbins   = 35
 nlevels = 20
 
 # Fixed-Na MCMC run:
-#post = np.load("../run/MCMC_WASP17b_hires.npz")
-post = np.load("../retrieval_v03_3HW/MCMC_WASP17b_hires.npz")
+post = np.load("../run/MCMC_WASP17b_hires.npz")
+
 Z = post["Z"]
 Z = Z[burnin:,:]
 Z[:,1] /= rjup
 nsamples, npars1 = np.shape(Z)
-posterior1 = Z[:-1]
+posterior1 = Z[Z[:,0]>0,:]
 # Gather 2D histograms:
 hist1 = []
 xran1, yran1, lmax1 = [], [], []
@@ -50,7 +50,7 @@ Z = post["Z"]
 Z = Z[burnin:,:]
 Z[:,1] /= rjup
 nsamples, npars2 = np.shape(Z)
-posterior2 = Z[:-1]
+posterior2 = Z[Z[:,0]>0,:]
 # Gather 2D histograms:
 hist2 = []
 xran2, yran2, lmax2 = [], [], []
